@@ -7,7 +7,7 @@ ENV NODE_ENV production
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ca-certificates curl unzip mariadb-client node-pg postgresql-client --no-install-recommends && \
-    rm -r /var/lib/apt/lists/* /var/cache/apt*
+    rm -r /var/lib/apt/lists/* /var/cache/apt/*
 
 RUN update-ca-certificates
 
