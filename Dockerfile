@@ -1,12 +1,12 @@
-FROM node:9
-MAINTAINER agilob
+FROM node:13-buster-slim
+LABEL maintainer="agilob"
 
 ENV ETHERPAD_VERSION 1.8.0
 ENV NODE_ENV production
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    curl unzip mysql-client node-pg postgresql-client && \
+    curl unzip mariadb-client node-pg postgresql-client --no-install-recommends && \
     rm -r /var/lib/apt/lists/*
 
 WORKDIR /opt/
