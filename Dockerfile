@@ -6,8 +6,10 @@ ENV NODE_ENV production
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    curl unzip mariadb-client node-pg postgresql-client --no-install-recommends && \
+    ca-certificates curl unzip mariadb-client node-pg postgresql-client --no-install-recommends && \
     rm -r /var/lib/apt/lists/*
+
+RUN update-ca-certificates
 
 WORKDIR /opt/
 
@@ -22,9 +24,6 @@ RUN bin/installDeps.sh && rm settings.json
 COPY entrypoint.sh /entrypoint.sh
 
 RUN sed -i 's/^node/exec\ node/' bin/run.sh
-
-# OpenShift runs containers as non-root
-RUN chmod g+rwX,o+rwX -R .
 
 VOLUME /opt/etherpad-lite/var
 RUN ln -s var/settings.json settings.json
