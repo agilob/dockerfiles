@@ -1,7 +1,7 @@
 FROM node:13-buster-slim
 LABEL maintainer="agilob"
 
-ENV ETHERPAD_VERSION 1.8.3
+ENV ETHERPAD_VERSION 1.8.4
 ENV NODE_ENV production
 
 RUN apt-get update && \
